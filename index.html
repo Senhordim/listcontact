@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html ng-app="listContact">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>listContact - Better list of contacts </title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container" ng-controller="PersonsController">
+	<h3>Contacts</h3>
+	<hr>
+	<div class="row">
+		<div class="col-md-12">
+			<form class="form-inline well well-sm">
+				<span class="glyphicon glyphicon-search"></span>
+
+				<div class="form-group">
+					<input type="text"
+								 class="form-control"
+								 id="name"
+								 ng-model="search.nome"
+								 placeholder="Search Name"
+					>
+					<input type="text"
+								 class="form-control"
+								 id="email"
+								 ng-model="search.email"
+								 placeholder="Search Email"
+					>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Nome</th>
+						<th>Email</th>
+						<th>Telefone</th>
+						<th>Data de Nascimento</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="person in persons | filter:search"
+							ng-style="{
+								'background-color': $index == selectedIndex ? 'lightgray' : ''
+							}"
+							ng-click="selectPerson(person, $index)"
+					>
+						<td>{{ $index }}</td>
+						<td>{{ person.nome }}</td>
+						<td>{{ person.email }}</td>
+						<td>{{ person.telefone  }}</td>
+						<td>{{ person.dataDeNascimento | date:'d MMMM yyyy'}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Details
+				</div>
+				<div class="panel-body">
+					<dl>
+						<dt>Nome</dt>
+						<dd>{{selectedPerson.nome}}</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+	<script src="bower_components/angular/angular.min.js"></script>
+	
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="assets/javascripts/app.js"></script>
+</body>
+</html>
