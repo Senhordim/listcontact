@@ -67,16 +67,23 @@
 					<input type="text"
 								 class="form-control"
 								 id="name"
-								 ng-model="search.nome"
+								 ng-model="search"
 								 placeholder="Search Name"
 					>
-					<input type="text"
-								 class="form-control"
-								 id="email"
-								 ng-model="search.email"
-								 placeholder="Search Email"
-					>
+		
 				</div>
+				
+				<span class="glyphicon glyphicon-sort-by-attributes"></span>
+
+				<div class="form-group">
+					<select class="form-control" ng-model="order">
+						<option value="nome">Nome (ASC)</option>
+						<option value="nome">Nome (DESC)</option>
+						<option value="email">Email (DESC)</option>
+						<option value="email">Email (DESC)</option>
+					</select>
+				</div>
+
 			</form>
 		</div>
 	</div>
@@ -93,7 +100,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="person in persons | filter:search"
+					<tr ng-repeat="person in persons | filter:sensitiveSearch | orderBy:order"
 							ng-style="{
 								'background-color': $index == selectedIndex ? 'lightgray' : ''
 							}"

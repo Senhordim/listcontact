@@ -1,7 +1,9 @@
 var app = angular.module('listContact', []);
 
 app.controller('PersonsController', function($scope){
-	$scope.search = {}
+
+	$scope.search = "";
+	$scope.order = "order";
 	$scope.selectedIndex = null;
 	$scope.selectedPerson = null;
 
@@ -9,6 +11,14 @@ app.controller('PersonsController', function($scope){
 		$scope.selectedIndex = index;
 		$scope.selectedPerson = person;
 	}
+
+	$scope.sensitiveSearch = function(person){
+		if($scope.search){
+			return person.nome.indexOf($scope.search) == 0 || 
+						 person.email.indexOf($scope.search) == 0;
+		}
+		return true;
+	};
 
 
 	$scope.persons = [ 
