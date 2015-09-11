@@ -1,0 +1,23 @@
+{
+  "name": "listContact",
+  "version": "1.0.0-beta",
+  "authors": [
+    "Diego Collares <diego.collares@gmail.com>"
+  ],
+  "description": "Contact list Angular",
+  "main": "index.html",
+  "keywords": [
+    "contact",
+    "list",
+    "angular"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Senhordim",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
