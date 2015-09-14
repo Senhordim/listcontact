@@ -93,18 +93,24 @@
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Nome</th>
-						<th>Email</th>
+						<th>Nome
+							<span ng-click="order = 'name'" class="glyphicon glyphicon-menu-up"></span>
+							<span ng-click="order = '-name'" class="glyphicon glyphicon-menu-down"></span>
+						</th>
+						<th>Email
+							<span class="glyphicon glyphicon-menu-up"></span>
+							<span class="glyphicon glyphicon-menu-down"></span>
+						</th>
 						<th>Telefone</th>
 						<th>Data de Nascimento</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="person in persons | filter:sensitiveSearch | orderBy:order"
+					<tr ng-repeat="person in filteredPersons = (persons | filter:sensitiveSearch | orderBy:order)"
 							ng-style="{
-								'background-color': $index == selectedIndex ? 'lightgray' : ''
+								'background-color': person.email == selectedPerson.email ? 'lightgray' : ''
 							}"
-							ng-click="selectPerson(person, $index)"
+							ng-click="selectPerson(person)"
 					>
 						<td>{{ $index }}</td>
 						<td>{{ person.nome }}</td>
@@ -112,6 +118,11 @@
 						<td>{{ person.telefone  }}</td>
 						<td>{{ person.dataDeNascimento | date:'d MMMM yyyy'}}</td>
 					</tr>
+
+					<tr ng-show="filteredPersons.length == 0">
+						<td colspan="5"><h4>No resuts found for search term '{{ search }}'</h4> </td>
+					</tr>
+
 				</tbody>
 			</table>
 		</div>

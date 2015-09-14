@@ -3,12 +3,10 @@ var app = angular.module('listContact', []);
 app.controller('PersonsController', function($scope){
 
 	$scope.search = "";
-	$scope.order = "order";
-	$scope.selectedIndex = null;
+	$scope.order = "";
 	$scope.selectedPerson = null;
 
-	$scope.selectPerson = function (person, index){
-		$scope.selectedIndex = index;
+	$scope.selectPerson = function (person){
 		$scope.selectedPerson = person;
 	}
 
